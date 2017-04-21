@@ -10,21 +10,42 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.http.client.*;
+import org.apache.http.conn.*;
+import org.apache.http.auth.*;
+import org.apache.http.cookie.*;
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
+import static org.apache.http.client.methods.RequestBuilder.post;
+import org.apache.http.entity.ContentType;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.DefaultBHttpClientConnection;
 import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.message.BasicNameValuePair;
+
+
+
 /**
  *
  * @author Raf
  */
 public class GetAllStudent {
-    
-    CloseableHttpClient httpclient = HttpClients.createDefault();
-HttpGet httpGet = new HttpGet("http://targethost/homepage");
-CloseableHttpResponse response1 = httpclient.execute(httpGet);
-    
-}
+  
+        
+                HttpClient client = new DefaultHttpClient();
+                String endpoint = "testservices.informatsoftware.be/icursisten";
+                String version = "1";
+                String resource = "student";
+                String JSON_STRING= "";
+                HttpPost post = new HttpPost("https://" +  endpoint + "/" + version + "/" + resource);
+                StringEntity requestEntity = new StringEntity(
+                JSON_STRING,ContentType.APPLICATION_JSON);
+                post.setEntity(requestEntity);
+                
+                
+
+                HttpResponse response = client.execute(post);
+                
+                
+        }
+
